@@ -28,7 +28,7 @@
     try {
         String url = "jdbc:mysql://127.0.0.1:3306/bbc";
         String id = "root";
-        String pwd = "12tjddla3";
+        String pwd = "1234";
 
         Class.forName("com.mysql.jdbc.Driver"); // jdbc드라이버 로딩
         conn = DriverManager.getConnection(url, id, pwd); // db연결
