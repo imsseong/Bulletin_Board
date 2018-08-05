@@ -8,13 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>write</title>
 </head>
 <body>
     <form action="insertBoard.jsp" method="post" onsubmit="return checkSubmit();">
-        title <input type="text" name="title" /><br/>
-        writer <input type="text" name="writer" /><br/>
-        content <textarea cols="30" rows="10" name="content"></textarea><br/>
+        제목<input type="text" name="title" /><br/>
+        글쓴이<input type="text" name="writer" /><br/>
+        내용<textarea cols="30" rows="10" name="content"></textarea><br/>
         <input type="submit" value="확인"/>
     </form>
     <script>

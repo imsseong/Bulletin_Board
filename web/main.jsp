@@ -8,33 +8,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>main</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
 </head>
 <body>
     <h2>JSP Bulletin Board</h2>
     <nav class="navbar navbar-default">
-        <div class="navbar-header">
-            <button type="button" data-target="#mynavbar" data-toggle="collapse" class="navbar-toggle">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="main.jsp">JSP 웹 게시판</a>
-        </div>
-        <div id="mynavbar" class="collapse navbar-collapse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="main.jsp">JSP 웹 게시판</a>
+            </div>
             <ul class="nav navbar-nav">
-                <li><a href="main.jsp">HOME</a></li>
+                <li class="active"><a href="main.jsp">HOME</a></li>
                 <li><a href="list.jsp">BULLETIN BOARD</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="login.jsp">Login</a></li>
-                <li><a href="signUp.jsp">Sign Up</a></li>
+                <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                <li><a href="signUp.jsp"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
             </ul>
         </div>
     </nav>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+
 </body>
 </html>

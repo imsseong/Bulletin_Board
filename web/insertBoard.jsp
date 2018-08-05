@@ -11,10 +11,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>insert board</title>
 </head>
+<body>
 <%
-    java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyyMMddHHmmss");
+    request.setCharacterEncoding("UTF-8");
+
+    Class.forName("com.mysql.jdbc.Driver"); // jdbc드라이버 로딩
+    String url = "jdbc:mysql://127.0.0.1:3306/bbc";
+    String id = "root";
+    String pwd = "1234";
+
+    java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyyMMdd");
 
     String title = request.getParameter("title");
     String writer = request.getParameter("writer");
@@ -22,25 +31,27 @@
     String content = request.getParameter("content");
 
     Connection conn = null;
-    PreparedStatement psmt = null;
-    ResultSet rs = null;
+    PreparedStatement pstmt = null;
 
     try {
-        String url = "jdbc:mysql://127.0.0.1:3306/bbc";
-        String id = "root";
-        String pwd = "1234";
-
-        Class.forName("com.mysql.jdbc.Driver"); // jdbc드라이버 로딩
         conn = DriverManager.getConnection(url, id, pwd); // db연결
+        String sql = "INSERT INTO board (title, writer, date, content) VALUES(?, ?, ?, ?)";
+        pstmt = conn.prepareStatement(sql);
 
-        psmt = conn.prepareStatement();
-        String sql = "INSERT INTO board" + "(idx, title, writer, date, content)" + "VALUES("
-    } catch(Exception e) {
+        pstmt.setString(1, title);
+        pstmt.setString(2, writer);
+        pstmt.setString(3, date);
+        pstmt.setString(4, content);
+
+        pstmt.execute();
+        pstmt.close();
+     } catch(Exception e) {
         e.printStackTrace();
-        out.println("Fail");
-    }
-
+        }
 %>
-<body>
+<script>
+    alert("게시글이 등록 되었습니다.");
+    location.href = "list.jsp";
+</script>
 </body>
 </html>
