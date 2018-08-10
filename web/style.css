@@ -9,6 +9,6 @@ table{
     margin-right:auto;
     border:3px solid gray;
 }
-td{
-   border:1px solid gray;
+td.subject{
+    border:1px solid gray;
 }

@@ -23,31 +23,46 @@
     String id = "root";
     String pwd = "1234";
 
-    java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyyMMdd");
+    java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd hh:ss");
 
-    String title = request.getParameter("title");
-    String writer = request.getParameter("writer");
-    String date = formatter.format(new java.util.Date());
-    String content = request.getParameter("content");
+    String writer = "";
+    String login = (String)session.getAttribute("login");
+    if(login != null && login.equals("yes")){
+        writer = (String)session.getAttribute("userid");
+    }
+    if(writer == null){
+%>
+        <script>
+            alert("로그인하세요.");
+            location.href = "login.jsp";
+        </script>
+<%
+    } else {
 
-    Connection conn = null;
-    PreparedStatement pstmt = null;
+        String title = request.getParameter("title");
+        String date = formatter.format(new java.util.Date());
+        String content = request.getParameter("content");
+        writer = (String)session.getAttribute("userid");
 
-    try {
-        conn = DriverManager.getConnection(url, id, pwd); // db연결
-        String sql = "INSERT INTO board (title, writer, date, content) VALUES(?, ?, ?, ?)";
-        pstmt = conn.prepareStatement(sql);
+        Connection conn = null;
+        PreparedStatement pstmt = null;
 
-        pstmt.setString(1, title);
-        pstmt.setString(2, writer);
-        pstmt.setString(3, date);
-        pstmt.setString(4, content);
+        try {
+            conn = DriverManager.getConnection(url, id, pwd); // db연결
+            String sql = "INSERT INTO board (title, writer, date, content) VALUES(?, ?, ?, ?)";
+            pstmt = conn.prepareStatement(sql);
 
-        pstmt.execute();
-        pstmt.close();
-     } catch(Exception e) {
-        e.printStackTrace();
+            pstmt.setString(1, title);
+            pstmt.setString(2, writer);
+            pstmt.setString(3, date);
+            pstmt.setString(4, content);
+
+            pstmt.execute();
+            pstmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 %>
 <script>
     alert("게시글이 등록 되었습니다.");

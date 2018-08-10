@@ -11,6 +11,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <link rel="stylesheet" href="style.css" type="text/css">
     <meta charset="UTF-8">
     <title>list</title>
 </head>
@@ -46,13 +47,14 @@
             String title = rs.getString("title");
             String writer = rs.getString("writer");
             String date = rs.getString("date");
+            int views = rs.getInt("views");
 %>
         <tr>
             <td><%=idx%></td>
             <td><a href="content.jsp?idx=<%=idx%>"><%=title%></a></td>
             <td><%=writer%></td>
             <td><%=date%></td>
-            <td>123</td>
+            <td><%=views%></td>
         </tr>
 <%
         }

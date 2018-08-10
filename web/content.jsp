@@ -27,7 +27,7 @@
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String idx = request.getParameter("idx");
+        int idx = Integer.parseInt(request.getParameter("idx"));
 
         try {
             conn = DriverManager.getConnection(url, id, pwd); // db연결
@@ -39,6 +39,8 @@
                 String writer = rs.getString("writer");
                 String date = rs.getString("date");
                 String content = rs.getString("content");
+                int views = rs.getInt("views");
+                views++;
     %>
 <table>
     <tr>
@@ -51,7 +53,7 @@
         <th>글쓴이</th>
         <td><%=writer%></td>
         <th>조회수</th>
-        <td>123</td>
+        <td><%=views%></td>
         <th>날짜</th>
         <td><%=date%></td>
     </tr>
@@ -60,8 +62,14 @@
         <td><%=content%></td>
     </tr>
 </table>
-<a href="delete.jsp?idx=<%=rs.getInt("idx")%>">삭제</a>
-<a href="update.jsp?idx=<%=rs.getInt("idx")%>">수정</a>
+<%
+    sql = "UPDATE board SET views=" + views + " where idx=" +idx;
+    pstmt = conn.prepareStatement(sql);
+    pstmt.executeUpdate();
+    pstmt.close();
+%>
+<a href="delete.jsp?idx=<%=idx%>">삭제</a>
+<a href="update.jsp?idx=<%=idx%>">수정</a>
 <a href="list.jsp">목록</a>
     <%
             }

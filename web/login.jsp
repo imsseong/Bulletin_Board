@@ -14,7 +14,7 @@
 </head>
 <body>
 <h1>로그인</h1>
-<form action="insert.jsp" method="post" onsubmit="checkSubmit()">
+<form action="loginChk.jsp" method="post" onsubmit="checkSubmit()">
     <table>
         <tr>
             <td>아이디</td>

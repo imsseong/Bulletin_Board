@@ -25,8 +25,18 @@
                 <li><a href="list.jsp">BULLETIN BOARD</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-                <li><a href="signUp.jsp"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+                <%
+                    if(session.getAttribute("userid") == null) {
+                %>
+                <li><a href="login.jsp">Login</a></li>
+                <li><a href="signUp.jsp">Sign Up</a></li>
+                <%
+                    } else {
+                %>
+                <li><a href="logout.jsp">Logout</a></li>
+                <%
+                    }
+                %>
             </ul>
         </div>
     </nav>
